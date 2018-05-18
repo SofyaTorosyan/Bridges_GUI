@@ -23,57 +23,6 @@ MainWindow::~MainWindow()
 }
 
 
-class Painter:public QWidget
-{
-    public:
-    void paint()
-    {
-        QPainter painter(this);
-
-        QPen redPen(Qt::red);
-        redPen.setWidth(2);
-
-        QPen whitePen(Qt::white);
-        whitePen.setWidth(2);
-
-        QPen greenPen(Qt::green);
-        greenPen.setWidth(2);
-
-        QRect rec(10, 10, 10, 10);
-        int y = 10;
-
-        for (int j = 0; j < m.cols(); j++)
-        {
-            for (int i = 0; i < m.rows() ; i++)
-            {
-                if (m(i, j) == nullptr)
-                {
-                    painter.setPen(whitePen);
-                    QRect rect(rec.x()+(i+1)*10, y, 10,10);
-                    painter.drawEllipse(rect);
-                }
-                else
-                {
-                    if ((*m(i, j)).is_on_bridge)
-                    {
-                        painter.setPen(greenPen);
-                        QRect rect(rec.x()+(i+1)*10, y, 5,5);
-                        painter.drawEllipse(rect);
-                    }
-                    else
-                    {
-                        painter.setPen(redPen);
-                        QRect rect(rec.x()+(i+1)*10, y, 10,10);
-                        painter.drawEllipse(rect);
-                    }
-                }
-            }
-        y+=10;
-        }
-    }
-};
-
-
 
 void MainWindow::paintEvent(QPaintEvent*)
 {

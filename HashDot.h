@@ -34,7 +34,7 @@ public:
 HashDot::HashDot(int l, int w) : length_(l), width_(w)
 { }
 
-HashDot::HashDot() : length_(150), width_(150)
+HashDot::HashDot() : length_(30), width_(30)
 { }
 
 void HashDot::clear()
@@ -44,8 +44,8 @@ void HashDot::clear()
 
 inline void HashDot::print() const
 { 
-    for (int i = 0; i < 150; i++)
-        for (int j = 0; j < 150; j++)
+    for (int i = 0; i < 30; i++)
+        for (int j = 0; j < 30; j++)
             cout << hash_dot_[i][j];
     cout << endl;
 } 
