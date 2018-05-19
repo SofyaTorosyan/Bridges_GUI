@@ -135,9 +135,9 @@ int main(int argc, char *argv[])
        m.enumerateBuildings();
        m.Circle();
        m.print();
-       cout << "-----------------------\nNumber of bridges.... " << count_of_bridges << endl;
-       cout << "Total length......... "                          << bridge_length    << endl;
-       cout << "Disconnected groups.. "                          << non_connected_buildings << "\n----------------------- \n";
+       output_file << "\n*** Number of bridges *** " << endl << count_of_bridges << "\n\n";
+       output_file << "*** Total bridge length *** " <<endl << bridge_length << "\n\n";
+       output_file << "*** Number of disconnected groups *** " << endl<< non_connected_buildings <<"\n\n";
 
 
     QApplication a(argc, argv);

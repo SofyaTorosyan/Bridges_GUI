@@ -6,6 +6,7 @@
 
 using namespace std;
 
+ofstream output_file("Output.txt");
 class HashDot
 {
 private:  
@@ -116,13 +117,19 @@ void HashDot::Read_From_File(const std::string& fileName)
     std::ifstream fileIn(fileName);
     if (!fileIn)
         cout << "No hashdot file " << fileName;
+    if(!output_file)
+        cout << "No output file " << endl;
 
     std::string line;
+    output_file << "*** City with # and . *** \n";
     while (std::getline(fileIn, line))
+    {
         hash_dot_.push_back(line);
+        output_file << line << endl;
+    }
 
     length_ = hash_dot_.back().length();
-    width_ = hash_dot_.size();
+    width_  = hash_dot_.size();
 }
 
 string& HashDot::Random_Generate_String(std::string& line)

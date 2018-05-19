@@ -1,13 +1,9 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-
-//#include<QPainter>
-
 #include "Timer.h"
 #include "HashDot.h"
 #include "Vertex.h"
-
 
 template<class T>
 class Matrix
@@ -137,29 +133,26 @@ template<class T>
 void Matrix<T>::print() const
 {
 
-    /*cout << "City with bridges is\n";
+    output_file << endl << "*** City with bridges is *** \n";
     for (int j = 0; j < cols_; j++)
     {
         for (int i = 0; i < rows_; i++)
         {
             if (m(i, j) == nullptr)
-                cout << " ";
+                output_file << " ";
             else
             {
                 if ((*m(i, j)).is_on_bridge)
-                    cout << '.';
+                    output_file << '.';
                 else
 
-                    cout << 'o';
+                    output_file << 'o';
             }
         }
-        cout << '\n';
+        output_file << '\n';
     }
-    */
 
-    // cout<<"second!!!";
-   // Painter p;
-   // p.paint();
+
 }
 
 template<class T>
@@ -397,17 +390,13 @@ void Matrix<T>::enumerateBuildings()
     /* Recover m.rows_ and m.cols_ values. */
     m.rows_ = r;
     m.cols_ = c;
-    cout << "enumerateBuildings finished\n";
+    output_file << "*** Count of cities ***" << endl << max_bid << "\n\n";
 }
-
-
-
 
 template<class T>
 void Matrix<T>::Circle()
 {
     Timer time;
-    cout << endl << "Count of cities " << max_bid;
     int count;
 
     connected_bid.push_back(0);
@@ -416,7 +405,8 @@ void Matrix<T>::Circle()
     pair<Matrix<Vertex*>::iterator, char> connectible;
     vector< Matrix<Vertex*>::iterator>    bridge_starts;
     vector< Matrix<Vertex*>::iterator>    bridge_ends;
-
+    output_file << "*** Order of connecting cities, length of the bridge ***" << endl;
+    output_file << "*** First city Second city bridge length ***" << endl;
 
     non_connected_buildings = max_bid;
     it.first.set_iterator();
@@ -434,9 +424,12 @@ void Matrix<T>::Circle()
                 connectible = find_Isolated_Building(it, (**it.first).bid);
                 if (connectible.first != pair<iterator, char>().first && connectible.second != pair<iterator, char>().second && (**it.first).bid != (**connectible.first).bid && (**it.first).bid != 0)
                 {
+                    output_file << (*it.first)->bid << " " << (*connectible.first)->bid << " ";
                     bridge_vector.push_back(std::make_pair(it.first,connectible.first));
                     connected_bid.push_back((*it.first)->bid);
+                     output_file << radius << endl;
                     bridge_length += radius;
+
                     bridge_starts.push_back(it.first);
                     bridge_ends.push_back(connectible.first);
                     connect_2_building(connectible, (**circle_start).bid);
@@ -509,8 +502,6 @@ void Matrix<T>::Create_Vertexes()
                 cout << '.';
         cout << endl;
     }
-
-    cout << "Create_Vertexes Finished " << endl;
 }
 
 
