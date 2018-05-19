@@ -79,7 +79,7 @@ void MainWindow::paintEvent(QPaintEvent*)
 
     painter.setPen(redPen);
     painter.drawEllipse(rec);
-    img_idx = 24;
+    img_idx = 40;
         QLine line;
 
         for (int i=0; i<m.bridge_vector.size(); i++)
@@ -107,22 +107,22 @@ void MainWindow::paintEvent(QPaintEvent*)
                painter.drawLine(line);
                scene.addLine(line,yellowPen);
                const QString FileName = "Image";
-               scene.clearSelection();
+              // scene.clearSelection();
                scene.setSceneRect(scene.itemsBoundingRect().marginsAdded(QMarginsF(30, 30, 30, 30)));
                QImage image(scene.sceneRect().size().toSize(), QImage::Format_ARGB32);
                QPainter paint(&image);
                scene.render(&paint);
-               image.save( "Image.png");
+               image.save(FileName +QString::number(img_idx)+ ".png");
                 // take an runtime image and save it in file
                 painter.setPen(bluePen);
                 painter.drawLine(line);
                 scene.addLine(line,bluePen);
-                scene.clearSelection();
+                //scene.clearSelection();
                 scene.setSceneRect(scene.itemsBoundingRect().marginsAdded(QMarginsF(30, 30, 30, 30)));
                 QImage image1(scene.sceneRect().size().toSize(), QImage::Format_ARGB32);
                 QPainter paint1(&image1);
                 scene.render(&paint1);
-                image1.save(FileName +QString::number(img_idx)+ ".png");
+                //image1.save(FileName +QString::number(img_idx)+ ".png");
                 img_idx++;
             }
 }

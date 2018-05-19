@@ -8,7 +8,6 @@
 #include<QGraphicsScene>
 #include<QGraphicsEllipseItem>
 
-
 namespace Ui {
 class MainWindow;
 }
